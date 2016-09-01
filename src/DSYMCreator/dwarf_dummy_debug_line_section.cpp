@@ -23,7 +23,6 @@ struct DWARFDebugLine {
 };
 
 std::vector<uint8_t> DwarfDummyDebugLineSection::dump() const {
-    
     // simply, we can only dump an empty debug line section to cheat lldb,
     // but an empty section makes lldb log some noisy message in stdout,
     // so here we make a normal debug line section, but without any data

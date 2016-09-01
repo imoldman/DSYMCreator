@@ -2,7 +2,7 @@
 //  dwarf_macho.cpp
 //  DSYMCreator
 //
-//  Created by oldman on 8/31/16.
+//  Created by oldman on 8/10/16.
 //
 //
 
@@ -44,7 +44,7 @@ struct TextSegmentCommand : public segment_command {
         cmd = LC_SEGMENT;
         memset(segname, 0, sizeof(segname));
         memcpy(segname, "__TEXT", 6);
-        vmaddr = 0x4000;       // text segment base address, must equal to the value in binary
+        vmaddr = 0x4000;       // text segment base address, must equal to the value in binary, TODO: detect by outside
         vmsize = 0;            // no need to fill, since lldb doesn't use it
         fileoff = 0;
         filesize = 0;
@@ -85,12 +85,12 @@ struct DwarfSegmentCommand : public segment_command {
 };
 
 struct DwarfCommonSectionHeader : public section {
-    DwarfCommonSectionHeader(const std::string& section_name, uint32_t file_offset, uint32_t length) {
+    DwarfCommonSectionHeader(const std::string& section_name, uint32_t vmbase, uint32_t file_offset, uint32_t length) {
         memset(sectname, 0, sizeof(sectname));
         memcpy(sectname, section_name.c_str(), section_name.size());
         memset(segname, 0, sizeof(segname));
         memcpy(segname, "__DWARF", 7);
-        addr = 0;       // no need to fill, since lldb doesn't use it
+        addr = vmbase + file_offset;
         size = length;
         offset = file_offset;
         align = 0;
@@ -160,20 +160,16 @@ std::vector<uint8_t> DwarfMacho::dump() const {
     text_segment_command.cmdsize = sizeof(TextSectionHeader) + sizeof(TextSegmentCommand);
     
     // prepare dwarf segement command
-    uint32_t vmbase = 0x30000;
-    uint32_t start_offset = 0x4000;
+    uint32_t vmbase = 0x300000;
+    uint32_t start_offset = 0x290000;
     uint32_t offset = start_offset;
-    DwarfCommonSectionHeader debug_line_section_header("__debug_line", offset, (uint32_t)debug_line_buffer.size());
-    debug_line_section_header.addr = vmbase + offset;
+    DwarfCommonSectionHeader debug_line_section_header("__debug_line", vmbase, offset, (uint32_t)debug_line_buffer.size());
     offset += debug_line_buffer.size();
-    DwarfCommonSectionHeader debug_info_section_header("__debug_info", offset, (uint32_t)debug_info_buffer.size());
-    debug_info_section_header.addr = vmbase + offset;
+    DwarfCommonSectionHeader debug_info_section_header("__debug_info", vmbase, offset, (uint32_t)debug_info_buffer.size());
     offset += debug_info_buffer.size();
-    DwarfCommonSectionHeader debug_abbrev_section_header("__debug_abbrev", offset, (uint32_t)debug_abbrev_buffer.size());
-    debug_abbrev_section_header.addr = vmbase + offset;
+    DwarfCommonSectionHeader debug_abbrev_section_header("__debug_abbrev", vmbase, offset, (uint32_t)debug_abbrev_buffer.size());
     offset += debug_abbrev_buffer.size();
-    DwarfCommonSectionHeader debug_str_section_header("__debug_str", offset, (uint32_t)debug_str_dump_result.buffer.size());
-    debug_str_section_header.addr = vmbase + offset;
+    DwarfCommonSectionHeader debug_str_section_header("__debug_str", vmbase, offset, (uint32_t)debug_str_dump_result.buffer.size());
     offset += debug_str_dump_result.buffer.size();
 
     DwarfSegmentCommand dwarf_segment_command;
@@ -208,10 +204,12 @@ std::vector<uint8_t> DwarfMacho::dump() const {
     appendToBuffer(buffer, debug_str_section_header);
     appendToBuffer(buffer, debug_abbrev_section_header);
     appendToBuffer(buffer, debug_info_section_header);
+    assert(buffer.size() <= 0x1000);
     buffer.resize(0x1000);
     appendBuffer(buffer, symbol_result.buffer);
     appendBuffer(buffer, string_result.buffer);
-    buffer.resize(0x4000);
+    assert(buffer.size() <= 0x290000);
+    buffer.resize(0x290000);
     appendBuffer(buffer, debug_line_buffer);
     appendBuffer(buffer, debug_info_buffer);
     appendBuffer(buffer, debug_abbrev_buffer);
