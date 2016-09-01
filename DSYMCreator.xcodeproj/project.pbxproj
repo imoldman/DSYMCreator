@@ -7,7 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F866B2F1D76A0E20028592C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F866B2E1D76A0E20028592C /* main.cpp */; };
+		7F0C959D1D77BA3F0066A1F4 /* dwarf_debug_str_section.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F0C959B1D77BA3F0066A1F4 /* dwarf_debug_str_section.cpp */; };
+		7F0C95A01D77C77C0066A1F4 /* dwarf_dummy_debug_line_section.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F0C959E1D77C77C0066A1F4 /* dwarf_dummy_debug_line_section.cpp */; };
+		7F0C95A31D77D4C40066A1F4 /* dwarf_debug_abbrev_section.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F0C95A11D77D4C40066A1F4 /* dwarf_debug_abbrev_section.cpp */; };
+		7F0C95A71D77D9CD0066A1F4 /* dwarf_debug_info_section.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F0C95A51D77D9CD0066A1F4 /* dwarf_debug_info_section.cpp */; };
+		7F0C95AB1D78340A0066A1F4 /* exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F0C95A91D78340A0066A1F4 /* exception.cpp */; };
+		7F866B611D76A1430028592C /* libgflags.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F866B421D76A1430028592C /* libgflags.2.dylib */; };
+		7F866B621D76A1430028592C /* libgflags.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F866B431D76A1430028592C /* libgflags.a */; };
+		7F866B631D76A1430028592C /* libgflags.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F866B441D76A1430028592C /* libgflags.dylib */; };
+		7F866B641D76A1430028592C /* libgflags_nothreads.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F866B451D76A1430028592C /* libgflags_nothreads.2.dylib */; };
+		7F866B651D76A1430028592C /* libgflags_nothreads.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F866B461D76A1430028592C /* libgflags_nothreads.a */; };
+		7F866B661D76A1430028592C /* libgflags_nothreads.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F866B471D76A1430028592C /* libgflags_nothreads.dylib */; };
+		7F866B671D76A1430028592C /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F866B5B1D76A1430028592C /* main.mm */; };
+		7F866B681D76A1430028592C /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F866B5D1D76A1430028592C /* util.cpp */; };
+		7F866B6C1D76A5020028592C /* string_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F866B6A1D76A5020028592C /* string_table.cpp */; };
+		7F866B6F1D76B3880028592C /* symbol_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F866B6E1D76B3880028592C /* symbol_table.cpp */; };
+		7F866B761D76BC0F0028592C /* dwarf_macho.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F866B741D76BC0F0028592C /* dwarf_macho.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +38,52 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7F0C959B1D77BA3F0066A1F4 /* dwarf_debug_str_section.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dwarf_debug_str_section.cpp; path = DSYMCreator/dwarf_debug_str_section.cpp; sourceTree = "<group>"; };
+		7F0C959C1D77BA3F0066A1F4 /* dwarf_debug_str_section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dwarf_debug_str_section.h; path = DSYMCreator/dwarf_debug_str_section.h; sourceTree = "<group>"; };
+		7F0C959E1D77C77C0066A1F4 /* dwarf_dummy_debug_line_section.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dwarf_dummy_debug_line_section.cpp; path = DSYMCreator/dwarf_dummy_debug_line_section.cpp; sourceTree = "<group>"; };
+		7F0C959F1D77C77C0066A1F4 /* dwarf_dummy_debug_line_section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dwarf_dummy_debug_line_section.h; path = DSYMCreator/dwarf_dummy_debug_line_section.h; sourceTree = "<group>"; };
+		7F0C95A11D77D4C40066A1F4 /* dwarf_debug_abbrev_section.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dwarf_debug_abbrev_section.cpp; path = DSYMCreator/dwarf_debug_abbrev_section.cpp; sourceTree = "<group>"; };
+		7F0C95A21D77D4C40066A1F4 /* dwarf_debug_abbrev_section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dwarf_debug_abbrev_section.h; path = DSYMCreator/dwarf_debug_abbrev_section.h; sourceTree = "<group>"; };
+		7F0C95A51D77D9CD0066A1F4 /* dwarf_debug_info_section.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dwarf_debug_info_section.cpp; path = DSYMCreator/dwarf_debug_info_section.cpp; sourceTree = "<group>"; };
+		7F0C95A61D77D9CD0066A1F4 /* dwarf_debug_info_section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dwarf_debug_info_section.h; path = DSYMCreator/dwarf_debug_info_section.h; sourceTree = "<group>"; };
+		7F0C95A81D77D9DE0066A1F4 /* dwarf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dwarf.h; path = DSYMCreator/dwarf.h; sourceTree = "<group>"; };
+		7F0C95A91D78340A0066A1F4 /* exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = exception.cpp; path = DSYMCreator/exception.cpp; sourceTree = SOURCE_ROOT; };
+		7F0C95AA1D78340A0066A1F4 /* exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = exception.h; path = DSYMCreator/exception.h; sourceTree = SOURCE_ROOT; };
 		7F866B2B1D76A0E20028592C /* DSYMCreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DSYMCreator; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F866B2E1D76A0E20028592C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		7F866B3B1D76A1430028592C /* gflags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gflags.h; sourceTree = "<group>"; };
+		7F866B3C1D76A1430028592C /* gflags_completions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gflags_completions.h; sourceTree = "<group>"; };
+		7F866B3D1D76A1430028592C /* gflags_declare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gflags_declare.h; sourceTree = "<group>"; };
+		7F866B3F1D76A1430028592C /* gflags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gflags.h; sourceTree = "<group>"; };
+		7F866B401D76A1430028592C /* gflags_completions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gflags_completions.h; sourceTree = "<group>"; };
+		7F866B421D76A1430028592C /* libgflags.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libgflags.2.dylib; sourceTree = "<group>"; };
+		7F866B431D76A1430028592C /* libgflags.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgflags.a; sourceTree = "<group>"; };
+		7F866B441D76A1430028592C /* libgflags.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libgflags.dylib; sourceTree = "<group>"; };
+		7F866B451D76A1430028592C /* libgflags_nothreads.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libgflags_nothreads.2.dylib; sourceTree = "<group>"; };
+		7F866B461D76A1430028592C /* libgflags_nothreads.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgflags_nothreads.a; sourceTree = "<group>"; };
+		7F866B471D76A1430028592C /* libgflags_nothreads.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libgflags_nothreads.dylib; sourceTree = "<group>"; };
+		7F866B491D76A1430028592C /* libgflags.pc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = libgflags.pc; sourceTree = "<group>"; };
+		7F866B4A1D76A1430028592C /* libgflags_nothreads.pc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = libgflags_nothreads.pc; sourceTree = "<group>"; };
+		7F866B4C1D76A1430028592C /* arch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arch.h; sourceTree = "<group>"; };
+		7F866B4E1D76A1430028592C /* reloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reloc.h; sourceTree = "<group>"; };
+		7F866B501D76A1430028592C /* reloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reloc.h; sourceTree = "<group>"; };
+		7F866B511D76A1430028592C /* compact_unwind_encoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compact_unwind_encoding.h; sourceTree = "<group>"; };
+		7F866B521D76A1430028592C /* fat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fat.h; sourceTree = "<group>"; };
+		7F866B531D76A1430028592C /* loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loader.h; sourceTree = "<group>"; };
+		7F866B541D76A1430028592C /* nlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nlist.h; sourceTree = "<group>"; };
+		7F866B551D76A1430028592C /* ranlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ranlib.h; sourceTree = "<group>"; };
+		7F866B561D76A1430028592C /* reloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reloc.h; sourceTree = "<group>"; };
+		7F866B571D76A1430028592C /* swap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swap.h; sourceTree = "<group>"; };
+		7F866B591D76A1430028592C /* reloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reloc.h; sourceTree = "<group>"; };
+		7F866B5B1D76A1430028592C /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = DSYMCreator/main.mm; sourceTree = "<group>"; };
+		7F866B5D1D76A1430028592C /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = util.cpp; path = DSYMCreator/util.cpp; sourceTree = "<group>"; };
+		7F866B5E1D76A1430028592C /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util.h; path = DSYMCreator/util.h; sourceTree = "<group>"; };
+		7F866B6A1D76A5020028592C /* string_table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = string_table.cpp; path = DSYMCreator/string_table.cpp; sourceTree = "<group>"; };
+		7F866B6B1D76A5020028592C /* string_table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = string_table.h; path = DSYMCreator/string_table.h; sourceTree = "<group>"; };
+		7F866B6D1D76B2BD0028592C /* symbol_table.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = symbol_table.h; path = DSYMCreator/symbol_table.h; sourceTree = "<group>"; };
+		7F866B6E1D76B3880028592C /* symbol_table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = symbol_table.cpp; path = DSYMCreator/symbol_table.cpp; sourceTree = "<group>"; };
+		7F866B741D76BC0F0028592C /* dwarf_macho.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dwarf_macho.cpp; path = DSYMCreator/dwarf_macho.cpp; sourceTree = "<group>"; };
+		7F866B751D76BC0F0028592C /* dwarf_macho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dwarf_macho.h; path = DSYMCreator/dwarf_macho.h; sourceTree = "<group>"; };
+		7F866B781D76BF1A0028592C /* symbol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = symbol.h; path = DSYMCreator/symbol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +91,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F866B631D76A1430028592C /* libgflags.dylib in Frameworks */,
+				7F866B651D76A1430028592C /* libgflags_nothreads.a in Frameworks */,
+				7F866B611D76A1430028592C /* libgflags.2.dylib in Frameworks */,
+				7F866B661D76A1430028592C /* libgflags_nothreads.dylib in Frameworks */,
+				7F866B621D76A1430028592C /* libgflags.a in Frameworks */,
+				7F866B641D76A1430028592C /* libgflags_nothreads.2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,7 +106,29 @@
 		7F866B221D76A0E20028592C = {
 			isa = PBXGroup;
 			children = (
-				7F866B2D1D76A0E20028592C /* DSYMCreator */,
+				7F866B381D76A1430028592C /* gflags */,
+				7F866B4B1D76A1430028592C /* mach-o */,
+				7F0C95A91D78340A0066A1F4 /* exception.cpp */,
+				7F0C95AA1D78340A0066A1F4 /* exception.h */,
+				7F866B5B1D76A1430028592C /* main.mm */,
+				7F866B5D1D76A1430028592C /* util.cpp */,
+				7F866B5E1D76A1430028592C /* util.h */,
+				7F866B6A1D76A5020028592C /* string_table.cpp */,
+				7F866B6B1D76A5020028592C /* string_table.h */,
+				7F866B6E1D76B3880028592C /* symbol_table.cpp */,
+				7F866B6D1D76B2BD0028592C /* symbol_table.h */,
+				7F0C959B1D77BA3F0066A1F4 /* dwarf_debug_str_section.cpp */,
+				7F0C959C1D77BA3F0066A1F4 /* dwarf_debug_str_section.h */,
+				7F0C959E1D77C77C0066A1F4 /* dwarf_dummy_debug_line_section.cpp */,
+				7F0C959F1D77C77C0066A1F4 /* dwarf_dummy_debug_line_section.h */,
+				7F0C95A11D77D4C40066A1F4 /* dwarf_debug_abbrev_section.cpp */,
+				7F0C95A21D77D4C40066A1F4 /* dwarf_debug_abbrev_section.h */,
+				7F0C95A51D77D9CD0066A1F4 /* dwarf_debug_info_section.cpp */,
+				7F0C95A61D77D9CD0066A1F4 /* dwarf_debug_info_section.h */,
+				7F866B741D76BC0F0028592C /* dwarf_macho.cpp */,
+				7F866B751D76BC0F0028592C /* dwarf_macho.h */,
+				7F866B781D76BF1A0028592C /* symbol.h */,
+				7F0C95A81D77D9DE0066A1F4 /* dwarf.h */,
 				7F866B2C1D76A0E20028592C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +141,108 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7F866B2D1D76A0E20028592C /* DSYMCreator */ = {
+		7F866B381D76A1430028592C /* gflags */ = {
 			isa = PBXGroup;
 			children = (
-				7F866B2E1D76A0E20028592C /* main.cpp */,
+				7F866B391D76A1430028592C /* include */,
+				7F866B411D76A1430028592C /* lib */,
 			);
-			path = DSYMCreator;
+			name = gflags;
+			path = DSYMCreator/gflags;
+			sourceTree = "<group>";
+		};
+		7F866B391D76A1430028592C /* include */ = {
+			isa = PBXGroup;
+			children = (
+				7F866B3A1D76A1430028592C /* gflags */,
+				7F866B3E1D76A1430028592C /* google */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		7F866B3A1D76A1430028592C /* gflags */ = {
+			isa = PBXGroup;
+			children = (
+				7F866B3B1D76A1430028592C /* gflags.h */,
+				7F866B3C1D76A1430028592C /* gflags_completions.h */,
+				7F866B3D1D76A1430028592C /* gflags_declare.h */,
+			);
+			path = gflags;
+			sourceTree = "<group>";
+		};
+		7F866B3E1D76A1430028592C /* google */ = {
+			isa = PBXGroup;
+			children = (
+				7F866B3F1D76A1430028592C /* gflags.h */,
+				7F866B401D76A1430028592C /* gflags_completions.h */,
+			);
+			path = google;
+			sourceTree = "<group>";
+		};
+		7F866B411D76A1430028592C /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				7F866B421D76A1430028592C /* libgflags.2.dylib */,
+				7F866B431D76A1430028592C /* libgflags.a */,
+				7F866B441D76A1430028592C /* libgflags.dylib */,
+				7F866B451D76A1430028592C /* libgflags_nothreads.2.dylib */,
+				7F866B461D76A1430028592C /* libgflags_nothreads.a */,
+				7F866B471D76A1430028592C /* libgflags_nothreads.dylib */,
+				7F866B481D76A1430028592C /* pkgconfig */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		7F866B481D76A1430028592C /* pkgconfig */ = {
+			isa = PBXGroup;
+			children = (
+				7F866B491D76A1430028592C /* libgflags.pc */,
+				7F866B4A1D76A1430028592C /* libgflags_nothreads.pc */,
+			);
+			path = pkgconfig;
+			sourceTree = "<group>";
+		};
+		7F866B4B1D76A1430028592C /* mach-o */ = {
+			isa = PBXGroup;
+			children = (
+				7F866B4C1D76A1430028592C /* arch.h */,
+				7F866B4D1D76A1430028592C /* arm */,
+				7F866B4F1D76A1430028592C /* arm64 */,
+				7F866B511D76A1430028592C /* compact_unwind_encoding.h */,
+				7F866B521D76A1430028592C /* fat.h */,
+				7F866B531D76A1430028592C /* loader.h */,
+				7F866B541D76A1430028592C /* nlist.h */,
+				7F866B551D76A1430028592C /* ranlib.h */,
+				7F866B561D76A1430028592C /* reloc.h */,
+				7F866B571D76A1430028592C /* swap.h */,
+				7F866B581D76A1430028592C /* x86_64 */,
+			);
+			name = "mach-o";
+			path = "DSYMCreator/mach-o";
+			sourceTree = "<group>";
+		};
+		7F866B4D1D76A1430028592C /* arm */ = {
+			isa = PBXGroup;
+			children = (
+				7F866B4E1D76A1430028592C /* reloc.h */,
+			);
+			path = arm;
+			sourceTree = "<group>";
+		};
+		7F866B4F1D76A1430028592C /* arm64 */ = {
+			isa = PBXGroup;
+			children = (
+				7F866B501D76A1430028592C /* reloc.h */,
+			);
+			path = arm64;
+			sourceTree = "<group>";
+		};
+		7F866B581D76A1430028592C /* x86_64 */ = {
+			isa = PBXGroup;
+			children = (
+				7F866B591D76A1430028592C /* reloc.h */,
+			);
+			path = x86_64;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,7 +300,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F866B2F1D76A0E20028592C /* main.cpp in Sources */,
+				7F0C959D1D77BA3F0066A1F4 /* dwarf_debug_str_section.cpp in Sources */,
+				7F866B671D76A1430028592C /* main.mm in Sources */,
+				7F0C95A01D77C77C0066A1F4 /* dwarf_dummy_debug_line_section.cpp in Sources */,
+				7F866B6F1D76B3880028592C /* symbol_table.cpp in Sources */,
+				7F866B681D76A1430028592C /* util.cpp in Sources */,
+				7F0C95A31D77D4C40066A1F4 /* dwarf_debug_abbrev_section.cpp in Sources */,
+				7F866B761D76BC0F0028592C /* dwarf_macho.cpp in Sources */,
+				7F0C95A71D77D9CD0066A1F4 /* dwarf_debug_info_section.cpp in Sources */,
+				7F866B6C1D76A5020028592C /* string_table.cpp in Sources */,
+				7F0C95AB1D78340A0066A1F4 /* exception.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +400,11 @@
 		7F866B331D76A0E20028592C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = ./DSYMCreator/gflags/include/;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DSYMCreator/gflags/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -215,6 +412,11 @@
 		7F866B341D76A0E20028592C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = ./DSYMCreator/gflags/include/;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DSYMCreator/gflags/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -238,6 +440,7 @@
 				7F866B341D76A0E20028592C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

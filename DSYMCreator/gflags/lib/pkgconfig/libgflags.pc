@@ -1,0 +1,13 @@
+prefix=/usr/local/Cellar/gflags/2.0
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: gflags
+Version: 2.0
+Description: A commandline flags library that allows for distributed flags
+URL: http://code.google.com/p/gflags
+Requires:
+Libs: -L${libdir} -lgflags
+Libs.private: -D_THREAD_SAFE  
+Cflags: -I${includedir}
