@@ -9,6 +9,7 @@
 #include "dwarf_macho.h"
 
 #include <assert.h>
+#include <algorithm>
 #include "mach-o/loader.h"
 #include "dwarf_debug_str_section.h"
 #include "dwarf_debug_abbrev_section.h"
@@ -160,8 +161,8 @@ std::vector<uint8_t> DwarfMacho::dump() const {
     text_segment_command.cmdsize = sizeof(TextSectionHeader) + sizeof(TextSegmentCommand);
     
     // prepare dwarf segement command
-    uint32_t vmbase = 0x300000;
-    uint32_t start_offset = 0x290000;
+    uint32_t vmbase = 0x300000;         // TODO: choose a safe vmbase and start offset
+    uint32_t start_offset = 0x300000;
     uint32_t offset = start_offset;
     DwarfCommonSectionHeader debug_line_section_header("__debug_line", vmbase, offset, (uint32_t)debug_line_buffer.size());
     offset += debug_line_buffer.size();
@@ -181,15 +182,17 @@ std::vector<uint8_t> DwarfMacho::dump() const {
     
     // prepare uuid command
     UUIDCommand uuid_command;
-    assert(uuid.length() == 32);
+    std::string clean_uuid = uuid;
+    clean_uuid.erase(std::remove(clean_uuid.begin(), clean_uuid.end(), '-'), clean_uuid.end());     // remove the hyphen in uuid first
+    assert(clean_uuid.length() == 32);
     for (int i = 0; i < 16; ++i) {
-        std::string str = uuid.substr(2*i, 2);
+        std::string str = clean_uuid.substr(2*i, 2);
         uuid_command.uuid[i] = strtol(str.c_str(), NULL, 16);
     }
     
     // prepare mach header
     MachHeader mach_header;
-    mach_header.ncmds = 4;
+    mach_header.ncmds = 3;
     mach_header.sizeofcmds = sizeof(UUIDCommand) + sizeof(SymtabCommand) + sizeof(TextSegmentCommand) + sizeof(TextSectionHeader);
     
     // write
@@ -199,21 +202,21 @@ std::vector<uint8_t> DwarfMacho::dump() const {
     appendToBuffer(buffer, symtab_command);
     appendToBuffer(buffer, text_segment_command);
     appendToBuffer(buffer, text_section_header);
-    appendToBuffer(buffer, dwarf_segment_command);
-    appendToBuffer(buffer, debug_line_section_header);
-    appendToBuffer(buffer, debug_str_section_header);
-    appendToBuffer(buffer, debug_abbrev_section_header);
-    appendToBuffer(buffer, debug_info_section_header);
+//    appendToBuffer(buffer, dwarf_segment_command);
+//    appendToBuffer(buffer, debug_line_section_header);
+//    appendToBuffer(buffer, debug_str_section_header);
+//    appendToBuffer(buffer, debug_abbrev_section_header);
+//    appendToBuffer(buffer, debug_info_section_header);
     assert(buffer.size() <= 0x1000);
     buffer.resize(0x1000);
     appendBuffer(buffer, symbol_result.buffer);
     appendBuffer(buffer, string_result.buffer);
-    assert(buffer.size() <= 0x290000);
-    buffer.resize(0x290000);
-    appendBuffer(buffer, debug_line_buffer);
-    appendBuffer(buffer, debug_info_buffer);
-    appendBuffer(buffer, debug_abbrev_buffer);
-    appendBuffer(buffer, debug_str_dump_result.buffer);
+//    assert(buffer.size() <= 0x300000);
+//    buffer.resize(0x300000);
+//    appendBuffer(buffer, debug_line_buffer);
+//    appendBuffer(buffer, debug_info_buffer);
+//    appendBuffer(buffer, debug_abbrev_buffer);
+//    appendBuffer(buffer, debug_str_dump_result.buffer);
 
     return buffer;
 }
