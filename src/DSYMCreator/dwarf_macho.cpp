@@ -192,7 +192,7 @@ std::vector<uint8_t> DwarfMacho::dump() const {
     
     // prepare mach header
     MachHeader mach_header;
-    mach_header.ncmds = 3;
+    mach_header.ncmds = 4;
     mach_header.sizeofcmds = sizeof(UUIDCommand) + sizeof(SymtabCommand) + sizeof(TextSegmentCommand) + sizeof(TextSectionHeader);
     
     // write
@@ -202,21 +202,21 @@ std::vector<uint8_t> DwarfMacho::dump() const {
     appendToBuffer(buffer, symtab_command);
     appendToBuffer(buffer, text_segment_command);
     appendToBuffer(buffer, text_section_header);
-//    appendToBuffer(buffer, dwarf_segment_command);
-//    appendToBuffer(buffer, debug_line_section_header);
-//    appendToBuffer(buffer, debug_str_section_header);
-//    appendToBuffer(buffer, debug_abbrev_section_header);
-//    appendToBuffer(buffer, debug_info_section_header);
+    appendToBuffer(buffer, dwarf_segment_command);
+    appendToBuffer(buffer, debug_line_section_header);
+    appendToBuffer(buffer, debug_str_section_header);
+    appendToBuffer(buffer, debug_abbrev_section_header);
+    appendToBuffer(buffer, debug_info_section_header);
     assert(buffer.size() <= 0x1000);
     buffer.resize(0x1000);
     appendBuffer(buffer, symbol_result.buffer);
     appendBuffer(buffer, string_result.buffer);
-//    assert(buffer.size() <= 0x300000);
-//    buffer.resize(0x300000);
-//    appendBuffer(buffer, debug_line_buffer);
-//    appendBuffer(buffer, debug_info_buffer);
-//    appendBuffer(buffer, debug_abbrev_buffer);
-//    appendBuffer(buffer, debug_str_dump_result.buffer);
+    assert(buffer.size() <= 0x300000);
+    buffer.resize(0x300000);
+    appendBuffer(buffer, debug_line_buffer);
+    appendBuffer(buffer, debug_info_buffer);
+    appendBuffer(buffer, debug_abbrev_buffer);
+    appendBuffer(buffer, debug_str_dump_result.buffer);
 
     return buffer;
 }

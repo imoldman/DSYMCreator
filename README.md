@@ -18,10 +18,11 @@ With IDA Pro's help, it can create a DSYM/DWARF file. You can import the symbol 
 	```shell
 	$ ./main.py /path/to/binary/xxx
 	```
-	Well done! Now your task in only wait. Then a symbol file `/path/to/binary/xxx.symbol` will be create.
+	Well done! Now your task in only wait (and wait, and wait...). Then a symbol file `/path/to/binary/xxx.symbol` will be created.
 	
-	Then you can import it by yourself. Have Fun!
+	Then you can import it to `lldb` by yourself. Have fun!
 	
-## Doc
+## Technical Doc
 
-1. [For Better iOS Debug : recreate debug symbol table](https://github.com/imoldman/DSYMCreator/blob/master/doc/For%20Better%20iOS%20Debug%201.md) [Chinese].
+1. [Chinese] [For Better iOS Debug : recreate debug symbol table](https://github.com/imoldman/DSYMCreator/blob/master/doc/For%20Better%20iOS%20Debug%201.md)
+2. [Chinese] [For Better iOS Debug : restore dwarf segment](https://github.com/imoldman/DSYMCreator/blob/master/doc/For%20Better%20iOS%20Debug%202.md)
