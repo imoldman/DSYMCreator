@@ -25,7 +25,8 @@ def run_bash(command):
 def main(binary_path):
   binary_path = os.path.abspath(binary_path)
   binary_file_name = os.path.basename(binary_path)
-  output_symbol_path = os.path.join(THIS_DIR, '%s.symbol' % binary_file_name)
+  binary_dir = os.path.dirname(binary_path)
+  output_symbol_path = os.path.join(binary_dir, '%s.symbol' % binary_file_name)
   toolchain_path = os.path.join(THIS_DIR, 'toolchain')
 
   # first make sure IDA exists
