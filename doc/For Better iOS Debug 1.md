@@ -52,12 +52,13 @@
 - 需要详细介绍的是`DSYMCreator`工具，其源码位于`src`内，我将其`build`的结果放了一份在`toolchain`里，其工作就是本文上面描述的内容。其命令行大概看起来是这样的。
 
 	```shell
-	$ ./DSYMCreator --uuid 	"14494083-a184-31e2-946b-3f942a402952" --raw_ida_symbol "/tmp/symbols.txt" --output /path/to/save/loadable_symbol
+	$ ./DSYMCreator --uuid 	"14494083-a184-31e2-946b-3f942a402952" --raw_ida_symbol "/tmp/symbols.txt" --dwarf_section_vmbase 0x40000 --output /path/to/save/loadable_symbol
 	```
 	
 	大致解释一下。
 	- `uuid`, 即为上文中提到的可执行文件的`uuid`, 构建符号表要用到
 	- `raw_ida_symbol` 即为从`IDA Pro`中获取的符号数据
+	- `dwarf_section_vmbase`, 这个稍微有点复杂。由于符号文件和可执行文件描述的实际是一个程序，因此他们的`segment`和`section`要保证兼容。其中这里的一条要求就是`dwarf`数据不能跟代码数据覆盖，此参数就是用来指定`dwarf`在进程内存中的起始地址的。
 	- `output` 顾名思义，即为导出的符号表文件。
 - 根目录的`main.py`是一个整合脚本，下文详述。
 	
@@ -69,7 +70,7 @@
 **以下是最终使用方式**。
 
 > 0. <div style="color:red">如果二进制文件有壳，先将其砸掉，注意取`armv7`版本</div>
-> 1. <div style="color:red">`$ ./main.py /path/to/binary/xxx`</div>
+> 1. <div style="color:red">`$ ./main.py --input /path/to/binary/xxx`</div>
 > 2. <div style="color:red">其实你的工作已经基本结束了，`IDA Pro`会自动打开并自动开始工作，然后可能需要你点两三次`OK`（这就是前面提到的『半自动化』部分），之后等待`IDA Pro`自动退出。</div>
 > 3. <div style="color:red">此时在与输入的可执行文件`xxx`同级目录下会生成一个名为`xxx.symbol`的文件，这个文件即为我们重建的符号文件。</div>
 
@@ -126,10 +127,10 @@
  	
  	```shell
  	$ scp root@192.168.2.6:/var/mobile/Containers/Bundle/Application/E3636785-6885-4193-B740-D7E39F9C85BD/TestApp.app/TestApp /path/to/TestApp
- 	$ ./main.py /path/to/TestApp
+ 	$ ./main.py --input /path/to/TestApp
  	```
   	
- 	这样在`main.py`同目录下就会生成一个名为`TestApp.symbol`的文件，此即为重建好的符号文件
+ 	这样一个名为`/path/to/TestApp.symbol`的文件就产生了，此即为重建好的符号文件
  	
 5. 将符号文件加载到`lldb`中, 并观察调用堆栈验证。使用如下命令。
  

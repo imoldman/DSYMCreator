@@ -54,18 +54,11 @@ static std::vector<Symbol> readRawSymbolDataFromPath(const std::string& path) {
     return symbols;
 }
 
-static std::string build_success_result(const std::string& content) {
-    return util::build_string([&](std::ostringstream& ss) {
-        ss << "{\"error\":0, \"decription\":\"" << content << "\"}";
-    });
-}
-
 static std::string build_failed_result(const Exception& exception) {
     return util::build_string([&](std::ostringstream& ss) {
         ss << "{\"error\":" << (int)exception.code() << ", \"description\":\"" << exception.description() << "\"}";
     });
 }
-
 
 int main(int argc, char* argv[]) {
     
@@ -77,7 +70,7 @@ int main(int argc, char* argv[]) {
         dwarf.symbols = readRawSymbolDataFromPath(FLAGS_raw_ida_symbol);
         auto buffer = dwarf.dump((uint32_t)std::stoul(FLAGS_dwarf_section_vmbase, nullptr, 16));
         util::write(FLAGS_output, 0, (uint32_t)buffer.size(), &buffer[0]);
-        std::cout << build_success_result("create symbol file success") << std::endl;
+        std::cout << "create symbol file success: " << FLAGS_output << std::endl;
         return 0;
     } catch (Exception& e) {
         std::cerr << build_failed_result(e) << std::endl;
