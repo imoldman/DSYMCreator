@@ -3,9 +3,9 @@ Symbol restore tool for iOS apps whose debug info are stripped.
 
 With IDA Pro's help, it can create a DSYM/DWARF file. You can import the symbol file to `lldb` by yourself. 
 
----
+**Please Note.** If the executable binary is fetched from `App Store`, it likely is encrypted, you should decrypt the `armv7` part first by [dumpdecrypted](https://github.com/stefanesser/dumpdecrypted).
 
-0. **Prepare** If the executable binary is fetched from `App Store`, it likely is encrypted, you should decrypt the `armv7` part first by [dumpdecrypted](https://github.com/stefanesser/dumpdecrypted).
+---
 
 ## Usage (default mode)
 
