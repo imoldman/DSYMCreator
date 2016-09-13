@@ -295,7 +295,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"cp -f \\\"${CONFIGURATION_BUILD_DIR}/DSYMCreator\\\" \\\"${SRCROOT}/../toolchain/\\\"\"\ncp -f \"${CONFIGURATION_BUILD_DIR}/DSYMCreator\" \"${SRCROOT}/../toolchain/\"";
+			shellScript = "echo \"cp -f \\\"${CONFIGURATION_BUILD_DIR}/DSYMCreator\\\" \\\"${SRCROOT}/../../toolchain/\\\"\"\ncp -f \"${CONFIGURATION_BUILD_DIR}/DSYMCreator\" \"${SRCROOT}/../../toolchain/\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 

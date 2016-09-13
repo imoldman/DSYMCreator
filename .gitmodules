@@ -1,0 +1,3 @@
+[submodule "src/objc-symbols"]
+	path = src/objc-symbols
+	url = https://github.com/0xced/class-dump.git
