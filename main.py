@@ -55,11 +55,21 @@ def main(binary_path):
   macho_dump_path = os.path.join(toolchain_path, 'macho-dump.py')
   uuid = run_bash('%s %s 2>/dev/null | grep uuid | egrep -o \'\w{8}-\w{4}-\w{4}-\w{4}-\w{12}\'' % (macho_dump_path, binary_path))
 
-  # 3. format symbol
+  # 3. extract already used address range from binary file, then calculate the minimum offset for dsym section
+  dsym_min_offset = 0x1000
+  result = run_bash('%s %s 2>/dev/null | egrep "vm_addr|vm_size" | egrep -o "[0-9]+" | paste - -' % (macho_dump_path, binary_path))
+  for line in result.split('\n'):
+    vmaddr, vmsize = line.split()
+    offset = int(vmaddr) + int(vmsize)
+    if dsym_min_offset < offset:
+      dsym_min_offset = offset
+
+  # 4. format symbol
   dsym_creator_path = os.path.join(toolchain_path, 'DSYMCreator')
   command = [dsym_creator_path,
              '--uuid', uuid,
              '--raw_ida_symbol', raw_symbol_path,
+             '--dwarf_section_vmbase', hex(dsym_min_offset),    # DSYMCreator need a hex string
              '--output', output_symbol_path]
   retcode = subprocess.call(command)
   if retcode !=0:

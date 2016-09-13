@@ -25,18 +25,6 @@
 		7F866B761D76BC0F0028592C /* dwarf_macho.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F866B741D76BC0F0028592C /* dwarf_macho.cpp */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		7F866B291D76A0E20028592C /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		7F0C959B1D77BA3F0066A1F4 /* dwarf_debug_str_section.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dwarf_debug_str_section.cpp; path = DSYMCreator/dwarf_debug_str_section.cpp; sourceTree = "<group>"; };
 		7F0C959C1D77BA3F0066A1F4 /* dwarf_debug_str_section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dwarf_debug_str_section.h; path = DSYMCreator/dwarf_debug_str_section.h; sourceTree = "<group>"; };
@@ -254,7 +242,7 @@
 			buildPhases = (
 				7F866B271D76A0E20028592C /* Sources */,
 				7F866B281D76A0E20028592C /* Frameworks */,
-				7F866B291D76A0E20028592C /* CopyFiles */,
+				7F9554E61D87D78300207AEB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -294,6 +282,22 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7F9554E61D87D78300207AEB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"cp -f \\\"${CONFIGURATION_BUILD_DIR}/DSYMCreator\\\" \\\"${SRCROOT}/../toolchain/\\\"\"\ncp -f \"${CONFIGURATION_BUILD_DIR}/DSYMCreator\" \"${SRCROOT}/../toolchain/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7F866B271D76A0E20028592C /* Sources */ = {

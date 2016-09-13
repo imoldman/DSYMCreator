@@ -18,7 +18,7 @@ struct DwarfMacho {
     std::string uuid;
     std::vector<Symbol> symbols;
     
-    std::vector<uint8_t> dump() const;
+    std::vector<uint8_t> dump(uint32_t section_vm_addr_offset) const;
 };
 
 #endif /* dwarf_macho_h */

@@ -116,7 +116,13 @@ void appendBuffer(std::vector<uint8_t>& buffer, const std::vector<uint8_t>& buff
     memcpy(&buffer[origin_size], &buffer2[0], buffer2.size());
 }
 
-std::vector<uint8_t> DwarfMacho::dump() const {
+uint32_t align_to(uint32_t address, uint32_t align) {
+    return ((address - 1) / align + 1) * align;
+}
+
+static uint32_t kSymboleTableOffset = 0x1000;
+
+std::vector<uint8_t> DwarfMacho::dump(uint32_t section_vm_addr_offset) const {
     
     // prepare strings
     std::vector<std::string> names;
@@ -149,7 +155,7 @@ std::vector<uint8_t> DwarfMacho::dump() const {
     
     // prepare symtab command
     SymtabCommand symtab_command;
-    symtab_command.symoff = 0x1000;
+    symtab_command.symoff = kSymboleTableOffset;
     symtab_command.nsyms = uint32_t(symbols.size());
     symtab_command.stroff = uint32_t(symtab_command.symoff + symbol_result.buffer.size());
     symtab_command.strsize = uint32_t(string_result.buffer.size());
@@ -161,8 +167,8 @@ std::vector<uint8_t> DwarfMacho::dump() const {
     text_segment_command.cmdsize = sizeof(TextSectionHeader) + sizeof(TextSegmentCommand);
     
     // prepare dwarf segement command
-    uint32_t vmbase = 0x300000;         // TODO: choose a safe vmbase and start offset
-    uint32_t start_offset = 0x300000;
+    uint32_t vmbase = align_to(section_vm_addr_offset, 0x1000);
+    uint32_t start_offset = align_to(symtab_command.stroff + symtab_command.strsize, 0x1000);
     uint32_t offset = start_offset;
     DwarfCommonSectionHeader debug_line_section_header("__debug_line", vmbase, offset, (uint32_t)debug_line_buffer.size());
     offset += debug_line_buffer.size();
