@@ -12,12 +12,7 @@
 		7F0C95A31D77D4C40066A1F4 /* dwarf_debug_abbrev_section.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F0C95A11D77D4C40066A1F4 /* dwarf_debug_abbrev_section.cpp */; };
 		7F0C95A71D77D9CD0066A1F4 /* dwarf_debug_info_section.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F0C95A51D77D9CD0066A1F4 /* dwarf_debug_info_section.cpp */; };
 		7F0C95AB1D78340A0066A1F4 /* exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F0C95A91D78340A0066A1F4 /* exception.cpp */; };
-		7F866B611D76A1430028592C /* libgflags.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F866B421D76A1430028592C /* libgflags.2.dylib */; };
 		7F866B621D76A1430028592C /* libgflags.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F866B431D76A1430028592C /* libgflags.a */; };
-		7F866B631D76A1430028592C /* libgflags.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F866B441D76A1430028592C /* libgflags.dylib */; };
-		7F866B641D76A1430028592C /* libgflags_nothreads.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F866B451D76A1430028592C /* libgflags_nothreads.2.dylib */; };
-		7F866B651D76A1430028592C /* libgflags_nothreads.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F866B461D76A1430028592C /* libgflags_nothreads.a */; };
-		7F866B661D76A1430028592C /* libgflags_nothreads.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F866B471D76A1430028592C /* libgflags_nothreads.dylib */; };
 		7F866B671D76A1430028592C /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F866B5B1D76A1430028592C /* main.mm */; };
 		7F866B681D76A1430028592C /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F866B5D1D76A1430028592C /* util.cpp */; };
 		7F866B6C1D76A5020028592C /* string_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F866B6A1D76A5020028592C /* string_table.cpp */; };
@@ -79,12 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F866B631D76A1430028592C /* libgflags.dylib in Frameworks */,
-				7F866B651D76A1430028592C /* libgflags_nothreads.a in Frameworks */,
-				7F866B611D76A1430028592C /* libgflags.2.dylib in Frameworks */,
-				7F866B661D76A1430028592C /* libgflags_nothreads.dylib in Frameworks */,
 				7F866B621D76A1430028592C /* libgflags.a in Frameworks */,
-				7F866B641D76A1430028592C /* libgflags_nothreads.2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,7 @@ DEFINE_string(dwarf_section_vmbase, "", "vm base addr for dwarf sections, in hex
 
 static void init_gflag_config(int& argc, char**& argv) {
     std::string usage("recreate the symbol file from ida output for ios application, e.g.\n");
-    usage += std::string("\t") + argv[0] + " --uuid \"14494083-a184-31e2-946b-3f942a402952\" --raw_ida_symbol \"/tmp/symbols.txt\" --dwarf_section_vmbase 0x40000 --output \"/path/to/save/loadable_symbol\" \n";
+    usage += std::string("\n") + argv[0] + " --uuid \"14494083-a184-31e2-946b-3f942a402952\" --raw_ida_symbol \"/tmp/symbols.txt\" --dwarf_section_vmbase 0x40000 --output \"/path/to/save/loadable_symbol\" \n";
     usage += std::string("then if no error occurs, a fresh symbol file will be created at /path/to/save/loadable_symbol");
     ::google::SetUsageMessage(usage);
     
@@ -31,6 +31,7 @@ static void init_gflag_config(int& argc, char**& argv) {
         FLAGS_raw_ida_symbol.length() == 0 ||
         FLAGS_dwarf_section_vmbase.length() == 0 ||
         FLAGS_output.length() == 0) {
+        ::google::ShowUsageWithFlags(argv[0]);
         throw Exception(ExceptionCode::kParamInvalid, "invalid param, please check the usage");
     }
 }
