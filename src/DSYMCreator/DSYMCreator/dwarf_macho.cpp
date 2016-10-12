@@ -168,8 +168,8 @@ std::vector<uint8_t> DwarfMacho::dump(uint32_t section_vm_addr_offset) const {
     
     // prepare dwarf segement command
     uint32_t vmbase = align_to(section_vm_addr_offset, 0x1000);
-    uint32_t start_offset = align_to(symtab_command.stroff + symtab_command.strsize, 0x1000);
-    uint32_t offset = start_offset;
+    uint32_t dwarf_sections_start_offset = align_to(symtab_command.stroff + symtab_command.strsize, 0x1000);
+    uint32_t offset = dwarf_sections_start_offset;
     DwarfCommonSectionHeader debug_line_section_header("__debug_line", vmbase, offset, (uint32_t)debug_line_buffer.size());
     offset += debug_line_buffer.size();
     DwarfCommonSectionHeader debug_info_section_header("__debug_info", vmbase, offset, (uint32_t)debug_info_buffer.size());
@@ -180,9 +180,9 @@ std::vector<uint8_t> DwarfMacho::dump(uint32_t section_vm_addr_offset) const {
     offset += debug_str_dump_result.buffer.size();
 
     DwarfSegmentCommand dwarf_segment_command;
-    dwarf_segment_command.vmaddr = vmbase + start_offset;
-    dwarf_segment_command.fileoff = start_offset;
-    dwarf_segment_command.filesize = offset - start_offset;
+    dwarf_segment_command.vmaddr = vmbase + dwarf_sections_start_offset;
+    dwarf_segment_command.fileoff = dwarf_sections_start_offset;
+    dwarf_segment_command.filesize = offset - dwarf_sections_start_offset;
     dwarf_segment_command.nsects = 4;
     dwarf_segment_command.cmdsize = sizeof(DwarfSegmentCommand) + 4 * sizeof(DwarfCommonSectionHeader);
     
@@ -217,8 +217,8 @@ std::vector<uint8_t> DwarfMacho::dump(uint32_t section_vm_addr_offset) const {
     buffer.resize(0x1000);
     appendBuffer(buffer, symbol_result.buffer);
     appendBuffer(buffer, string_result.buffer);
-    assert(buffer.size() <= 0x300000);
-    buffer.resize(0x300000);
+    assert(buffer.size() <= dwarf_sections_start_offset);
+    buffer.resize(dwarf_sections_start_offset);
     appendBuffer(buffer, debug_line_buffer);
     appendBuffer(buffer, debug_info_buffer);
     appendBuffer(buffer, debug_abbrev_buffer);
