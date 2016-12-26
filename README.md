@@ -5,8 +5,6 @@ With IDA Pro's help, it can create a DSYM/DWARF file. You can import the symbol 
 
 **Please Note.** If the executable binary is fetched from `App Store`, it likely is encrypted, you should decrypt the `armv7` part first by [dumpdecrypted](https://github.com/stefanesser/dumpdecrypted).
 
----
-
 ## Usage (default mode)
 
 1. **Install IDA Pro.** The tool needs IDA Pro. So You should install it first. If you don't want to use IDA Pro, see **Usage (only-objc mode)**
@@ -37,7 +35,9 @@ Also, a symbol file `/path/to/binary/xxx.symbol` will be created.
 Please note, since it only dumps objective-c functions, the function count in symbole file is less than the function count in symbol file created in default mode (i.e. IDA Pro mode).
 
   
-## Technical Doc
+---
+注:
 
-1. [Chinese] [For Better iOS Debug : recreate debug symbol table](https://github.com/imoldman/DSYMCreator/blob/master/doc/For%20Better%20iOS%20Debug%201.md)
-2. [Chinese] [For Better iOS Debug : restore dwarf segment](https://github.com/imoldman/DSYMCreator/blob/master/doc/For%20Better%20iOS%20Debug%202.md)
+Technical Doc : [高效逆向 - 为任意iOS App生成符号表](https://g.hz.netease.com/lixianliang/DSYMCreator/blob/master/doc/all.md)
+
+
