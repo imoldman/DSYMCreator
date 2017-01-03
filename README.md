@@ -38,6 +38,6 @@ Please note, since it only dumps objective-c functions, the function count in sy
 ---
 注:
 
-Technical Doc : [高效逆向 - 为任意iOS App生成符号表](https://g.hz.netease.com/lixianliang/DSYMCreator/blob/master/doc/all.md)
+Technical Doc : [高效逆向 - 为任意iOS App生成符号表](https://github.com/imoldman/DSYMCreator/blob/master/doc/all.md)
 
 

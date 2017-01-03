@@ -42,7 +42,7 @@
 
 # 实现
 
-搞定所有事情，接下来就是实现代码将其串联起来了。代码放在了[https://g.hz.netease.com/lixianliang/DSYMCreator](https://g.hz.netease.com/lixianliang/DSYMCreator)，简要介绍下代码组成。
+搞定所有事情，接下来就是实现代码将其串联起来了。代码放在了[https://github.com/imoldman/DSYMCreator](https://github.com/imoldman/DSYMCreator)，简要介绍下代码组成。
 
 - `doc`内是文档，`test`是一个测试工程，这些不是主要代码部分。
 
@@ -243,7 +243,7 @@ $ tree
 	
 ## 最终实现
 
-罗里吧嗦说了一堆，再加上根本不知道怎么说的数据结构细节，我们最终将符号表写了一份到`DWARF`段中。代码还是放在了公司gitlab上：[https://g.hz.netease.com/lixianliang/DSYMCreator](https://g.hz.netease.com/lixianliang/DSYMCreator)。适用前文提到的方式生成符号表并导入。
+罗里吧嗦说了一堆，再加上根本不知道怎么说的数据结构细节，我们最终将符号表写了一份到`DWARF`段中。代码还是放在了[GitHub](https://github.com/imoldman/DSYMCreator)上，使用前文提到的方式生成符号表并导入。
 
 现在可以打断点拉。
 
