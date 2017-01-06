@@ -18,9 +18,10 @@ def run_bash(command):
   open(shell_path, 'w').write(command)
   return subprocess.check_output(['bash', shell_path]).strip()
 
-def extract_raw_symbol_from_objc_symbols(binary_path):
+def extract_raw_symbol_from_objc_symbols(binary_path, is_arm64):
   objc_symbols_bin_path = os.path.join(TOOLCHAIN_DIR, 'objc-symbols')
-  raw_symbols = run_bash('%s --arch armv7 %s | sort' % (objc_symbols_bin_path, binary_path))
+  arch = 'arm64' if is_arm64 else 'armv7'
+  raw_symbols = run_bash('%s --arch %s %s | sort' % (objc_symbols_bin_path, arch, binary_path))
   
   # format to 'base	end	name'
   symbols = []
@@ -43,14 +44,19 @@ def make_sure_ida_exists():
     print >> sys.stderr, "IDA Pro is not installed at %s, please install first" % IDA_EXE_PATH
     sys.exit(1)
 
-def extract_thin_if_binary_is_fat(binary_path):
+def extract_thin_if_binary_is_fat(binary_path, is_arm64):
   magic_num = struct.unpack('<L', open(binary_path, 'r').read(4))[0]
   if magic_num == 0xbebafeca:
     # fat file, extract armv7
-    fresh_binary_path = '/tmp/dsym_creator_binary_armv7'
-    run_bash('lipo -thin armv7 %s -output %s' % (binary_path, fresh_binary_path))
+    arch = 'arm64' if is_arm64 else 'armv7'
+    fresh_binary_path = '/tmp/dsym_creator_binary_' + arch
+    run_bash('lipo -thin %s %s -output %s' % (arch, binary_path, fresh_binary_path))
     binary_path = fresh_binary_path
-  elif magic_num != 0xfeedface:
+  elif magic_num == 0xfeedface and not is_arm64:
+    pass
+  elif magic_num == 0xfeedfacf and is_arm64:
+    pass
+  else:
     # invalid file
     print >> sys.stderr, 'invalid binary file: %s' % binary_path
     sys.exit(1)
@@ -78,13 +84,15 @@ def calculate_dwarf_sections_min_file_offset_from_binary(binary_path):
       dwarf_min_offset = offset
   return dwarf_min_offset
 
-def dsymcreator_format_symbol(uuid, raw_ida_symbol, dwarf_section_offset, output):
+def dsymcreator_format_symbol(uuid, raw_ida_symbol, dwarf_section_offset, output, is_arm64):
   dsym_creator_path = os.path.join(TOOLCHAIN_DIR, 'DSYMCreator')
   command = [dsym_creator_path,
              '--uuid', uuid,
              '--raw_ida_symbol', raw_ida_symbol,
              '--dwarf_section_vmbase', hex(dwarf_section_offset),    # DSYMCreator need a hex string
              '--output', output]
+  if is_arm64:
+    command.append('--arm64')
   retcode = subprocess.call(command)
   if retcode !=0:
     print >> sys.stderr, 'DSYMCreator run failed!'
@@ -98,12 +106,12 @@ def main(options):
   raw_symbol_path = None
 
   # if input binary is a fat file, extract armv7
-  binary_path = extract_thin_if_binary_is_fat(binary_path)
+  binary_path = extract_thin_if_binary_is_fat(binary_path, options.arm64)
 
   if options.only_objc:
     # only objc mode, use objc-symbols output symbol
     # extract symbols by objc-symbols 
-    raw_symbol_path = extract_raw_symbol_from_objc_symbols(binary_path)
+    raw_symbol_path = extract_raw_symbol_from_objc_symbols(binary_path, options.arm64)
   else:
     # ida pro mode
     # first make sure IDA exists
@@ -116,7 +124,7 @@ def main(options):
   # extract already used address ranges from binary file, then calculate the minimum offset for dsym section
   dwarf_sections_min_offset = calculate_dwarf_sections_min_file_offset_from_binary(binary_path)
   # format symbol
-  dsymcreator_format_symbol(uuid, raw_symbol_path, dwarf_sections_min_offset, output_symbol_path)
+  dsymcreator_format_symbol(uuid, raw_symbol_path, dwarf_sections_min_offset, output_symbol_path, options.arm64)
 
   return 0
 
@@ -133,6 +141,7 @@ Then a file named `binary.symbol` will be in /path/to directory.'''.format(self_
 
   parser = argparse.ArgumentParser(description=description, formatter_class=argparse.RawDescriptionHelpFormatter,)
   parser.add_argument('--only-objc', action='store_true', help='only dump objc functions, if you don\'t have IDA Pro, you can use this switch')
+  parser.add_argument('--arm64', action='store_true', help='binary is arm64 version, or you want to extract arm64 part from universal file, note that since IDA Pro demo version doesn\'t support arm64, so you need use --only-objc with this flag')
   parser.add_argument('--input', action='store', required=True, dest='binary_path', help='path of the binary file, which must be decrypted first')
   args = parser.parse_args()
 

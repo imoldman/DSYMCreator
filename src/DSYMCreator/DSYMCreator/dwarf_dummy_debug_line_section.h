@@ -9,10 +9,10 @@
 #ifndef dwarf_dummy_debug_line_section_h
 #define dwarf_dummy_debug_line_section_h
 
-#include<vector>
+#include "common.h"
 
 struct DwarfDummyDebugLineSection {
-    std::vector<uint8_t> dump() const;
+    ByteBuffer dump() const;
 };
 
 #endif /* dwarf_dummy_debug_line_section_h */

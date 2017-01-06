@@ -11,12 +11,13 @@
 
 #include <string>
 
+template <typename T>
 struct Symbol {
     std::string name;
-    uint32_t base;      // base address
-    uint32_t end;       // end address
+    T base;      // base address
+    T end;       // end address
     
-    Symbol(std::string name, uint32_t base, uint32_t end) : name(name), base(base), end(end) {}
+    Symbol(std::string name, T base, T end) : name(name), base(base), end(end) {}
 };
 
 #endif /* symbol_h */

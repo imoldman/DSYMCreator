@@ -9,17 +9,19 @@
 #ifndef __DSYMCreatore__string_table__
 #define __DSYMCreatore__string_table__
 
+#include <assert.h>
 #include <map>
-#include <vector>
 #include <string>
+#include <vector>
+
+#include "common.h"
 
 struct StringTable {
     struct DumpResult {
-        std::vector<uint8_t> buffer;
+        ByteBuffer buffer;
         std::map<std::string, uint32_t> name_to_offset;
     };
-    std::vector<std::string> names;
-    DumpResult dump() const;
+    DumpResult dump(const std::vector<std::string>& names) const;
 };
 
 #endif /* __DSYMCreatore__string_table__ */

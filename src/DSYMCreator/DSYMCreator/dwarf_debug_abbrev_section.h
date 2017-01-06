@@ -9,14 +9,10 @@
 #ifndef dwarf_debug_abbrev_section_h
 #define dwarf_debug_abbrev_section_h
 
-#include <vector>
-#include "symbol.h"
+#include "common.h"
 
 struct DwarfDebugAbbrevSection {
-    
-    std::vector<Symbol> symbols;
-    
-    std::vector<uint8_t> dump() const;
+    ByteBuffer dump() const;
 };
 
 #endif /* dwarf_debug_abbrev_section_h */
